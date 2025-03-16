@@ -38,8 +38,7 @@
     const openButton = (node: HTMLElement) => {
         new ExtraButtonComponent(node).setIcon(START_ENCOUNTER);
     };
-    const open = async () => { // does not work right
-        debugger;
+    const open = async () => {
         if (!plugin.view) {
             await plugin.addTrackerView();
         }
@@ -53,7 +52,6 @@
                 );
             })
             .flat();
-        debugger;
         tracker.new(plugin, {
             creatures: creatures.map((c) => c.toJSON()),
             name: null,
@@ -70,9 +68,7 @@
         new ExtraButtonComponent(node).setIcon("plus-with-circle");
     };
 
-    const add = async (evt: MouseEvent) => { // works right 
-        debugger;
-        console.log("test")
+    const add = async (evt: MouseEvent) => {
         if (!plugin.view) {
             await plugin.addTrackerView();
         }
@@ -84,7 +80,6 @@
                 );
             })
             .flat();
-        debugger;
         tracker.add(plugin, rollHP, ...creatures);
     };
 
