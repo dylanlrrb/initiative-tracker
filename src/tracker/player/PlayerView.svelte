@@ -2,8 +2,6 @@
     import type { Creature } from "src/utils/creature";
     import { tracker } from "../stores/tracker";
     import { onMount, tick } from "svelte";
-    import { scale } from "svelte/transition";
-    import { linear } from 'svelte/easing';
 
     const { state, ordered } = tracker;
 
@@ -42,7 +40,6 @@
 
      // Scroll into view when $state changes
      $: if ($ordered) {
-        console.log("change!")
         scrollToActive();
     }
 
@@ -51,7 +48,6 @@
     const scrollToActive = async () => {
         await tick(); // Ensure DOM updates before scrolling
         const activeElement = carousel.querySelector(".card.active");
-        console.log("scroll!", activeElement)
         if (activeElement) {
             activeElement.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
         }
@@ -63,7 +59,7 @@
 <div class="view">
   <div bind:this={carousel} class="carousel">
     {#each activeAndVisible as creature (creature.id)}
-        <div class="card {amIActive(creature) && $state ? 'active' : ''} {getHpStatus(creature.hp, creature.max)} count-{creature.count}" transition:scale={{ duration: 250, easing: linear }}>
+        <div class="card {amIActive(creature) && $state ? 'active' : ''} {getHpStatus(creature.hp, creature.max)} count-{creature.count}">
         <div class="img-container {getHpStatus(creature.hp, creature.max)}">
             <img src={creature.image} alt={creature.getName()} />
         </div>
