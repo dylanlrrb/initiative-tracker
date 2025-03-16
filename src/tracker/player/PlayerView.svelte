@@ -12,6 +12,8 @@
     }
     return 0;
 }
+
+    const defaultImage = "https://lh3.googleusercontent.com/fife/ALs6j_HiLjIEXeLqI1Z2CudJb-CqaHPIILjbPLp8TZfk_xZE9Bc3fpopSlfRvsf_EILj4xFREMC9NRvsC8W56vz9H66dOqAtF2oiQv-LOskZjKkysVzzHewQqJOiBFC1FBJ8sdNDRsUfafWY-OCPZ7H5mQwPHfbmjn6apjXfnW0m02M6ub96a5Xd3tPW_RkEkPy4iYjKvcyR-9WHbC0D6ADMv919SkAcEGy3HRFcpg75brviOojWjVx4BBUqlsYNCZv9yU0Ep83gs4kDTnZgx-Erqj47uXCNhSgNBTf9s1-qKT_Kr5ejOMe-JIvZxz1dOQVmJoz1u4OfHlcGM890N6KnrKcRFnFWCr34gcBv4N1WHEk4x9dO3RQuuBXlb1A-99Qir0Rq9wMferQrc6ax02_1wBvGn2l_6vHzxpxjvpQBp0FAIJk6psae2kNo3cr9oK_VNja-6HhwppscV3edcKtwwq4JFKPy0nx0gqmjkfYXL2opohl1W9GByw0ZGp-dO5YBHKnvpvde_GQ5s4FV6A8KWuM4HLq6id8SUxf2U27d6_TDGEp3UrOXaJKgx1gpEvUZfcWTCFkRslZwirWFST-OST_YMXCp1Myh7wYG-V-u4RurbM7UJdT1S3oZKfyHAe-fcxz_soRvHN4Zcm_BKKfcYN1cXYHSNKra-StH-EOhbXBdQW_UcdX-FBs9gVoLZdNtEBG2KqxpoazlB5pxFdi-tGLzPCjBGb0O0JMYQ9x9pzSBgDZrlxnoVhRjXscYzukiz7aMDQd006BzMqgGEh2I3kjJ7TFmRZiBOywEkXXRKgMet7ZjP9dqg6XSI9gMNOvD5eRDUVAl25w3edRHwmVX-wkzzvohzmNkWNW9l9WhAOYXomm6DbjghWeVDLO5EF0oSd6Ba-KD9HOs0u82Wgy01rFODFFdrOgF-iuMnNboo1hua6FjqYOltz_sysO5s-BMY6_ZHPDTLQ5gZtAiU_ZV54muklX2PYt3vPUz3NfOb_7NJ_0KOQnv09tr-At6xtUt8r5RNdOAKYCKBX3pmzhS9-oBJedekN5bcB8xgiOijFAF6zkWGcsh571MkDdnneL4c8Z4Drni77At0-uxtx40zAscJTIdZerYkNjy28WBmJ7rRp9mwoZz5wVMOdVJc_Zr2UEfVMJjQ9s6PqoDIWcg6C6jkinB_MEzca-qvJl1QcIzVULEVACC-GHYpP9Jsf3QzASlx1tLvpesJINAzkhOzGdsGMqouVONAexZ8xaraJ5CoJRb-tjuPHZQDTJUBWKG5bIE3B-Eu8aniDNIf0XrsZWjDgnqa-nrH8zWXliLI-sBWhJvHH0oMx0il5Hwhb9VBkL4CTJKXiBFsBOSV-9LJu2ghCWl98wCLebpINllf0CaQ-jU1eUnK8AUD1hb1FygLeYO102LzBxpRB2jCGpje3lEYswLfbtCXB8rrXQ2WO-56dtQB5Zd3bTog3xcsbIeaFbgBrWXxJ31V27GSk5akK2iMRqYOAhgA6jiEQtC1QAOOqF1EePGGYk2ASM0emh4Wvg8HRZbJ6mjHYVVRp9GSdwK_Hn_LJyCqifcZxVoed5zGZMT8c1giQdr0PrvWGUu_4-l5ypXnhg4dCcs0K1yrkL7vx0IaLiKu_DOaHtfLgbOgFyoRwOEa5nh=w2557-h1713"
     
     const getHpStatus = (hp: number, max: number) => {
         if (hp <= 0) return "defeated";  // Check defeated first
@@ -61,7 +63,7 @@
     {#each activeAndVisible as creature (creature.id)}
         <div class="card {amIActive(creature) && $state ? 'active' : ''} {getHpStatus(creature.hp, creature.max)} count-{creature.count}">
         <div class="img-container {getHpStatus(creature.hp, creature.max)}">
-            <img src={creature.image} alt={creature.getName()} />
+            <img src={creature.image || defaultImage} alt={creature.getName()} />
         </div>
         <h3>{creature.getName()}</h3>
         <p class="status">{[...creature.status].map((s) => s.name).join(", ")}</p>
